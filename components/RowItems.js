@@ -1,44 +1,35 @@
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native'
-import React from 'react'
-import { nextArrow } from '../assets'
-import { white } from '../colors'
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { white } from '../colors';
+import { nextArrow } from '../assets';
 
-export default function RowItems({ title, data }) {
-    const renderItem = ({ item }) => {
-        const { image, itemTitle } = item
+class RowItems extends Component {
+    renderItem = ({ item }) => {
+        const { image, itemTitle } = item;
         return (
             <View style={styles.imageContainer}>
-                <Image
-                    style={styles.Img}
-                    source={image}
-                />
-                <Text style={styles.imageText}>
-                    {itemTitle}
-                </Text>
+                <Image style={styles.Img} source={image} />
+                <Text style={styles.imageText}>{itemTitle}</Text>
             </View>
-        )
-    }
+        );
+    };
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.titleContainer}>
-                <Text style={styles.Title}>{title}</Text>
-                <Image
-                    source={nextArrow}
-                />
+    render() {
+        const { title, data } = this.props;
+        return (
+            <View style={styles.container}>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.Title}>{title}</Text>
+                    <Image source={nextArrow} />
+                </View>
+                <FlatList data={data} renderItem={this.renderItem} horizontal />
             </View>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                horizontal
-            />
-        </View>
-    )
+        );
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
-        // flexDirection: 'row',
         width: '100%',
         alignItems: 'center',
         paddingLeft: 10,
@@ -63,7 +54,7 @@ const styles = StyleSheet.create({
     Img: {
         width: 120,
         height: 160,
-        resizeMode: 'cover'
+        resizeMode: 'cover',
     },
     imageText: {
         color: white,
@@ -71,5 +62,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         marginLeft: 5,
         width: 110,
-    }
-})
+    },
+});
+
+export default RowItems;

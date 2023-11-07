@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { lightGray, white } from "../colors";
+import { lightGray, white, blue } from "../colors";
 
 export default class Input extends Component {
   render() {
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   },
   TextInput: {
     height: "100%",
+    width: '100%',
   },
   title: {
     fontSize: 13.13,

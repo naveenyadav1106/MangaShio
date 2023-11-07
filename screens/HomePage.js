@@ -1,78 +1,52 @@
-import { View, Text, ImageBackground } from 'react-native'
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import Header from '../components/Header'
-import Button from '../components/Button'
-import { white, black } from '../colors'
-import { Image } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
-import RowItems from '../components/RowItems'
-import {
-    leftArrow,
-    rightArrow,
-    thumbnail1,
-    thumbnail2,
-    thumbnail3,
-    topImage,
-} from "../assets";
-import { ScrollView } from 'react-native'
+import React, { Component } from 'react';
+import { View, Text, ImageBackground, Image, StyleSheet, ScrollView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import RowItems from '../components/RowItems';
+import { white, black } from '../colors';
+import { leftArrow, rightArrow, thumbnail1, thumbnail2, thumbnail3, topImage } from '../assets';
 
-export default function HomePage() {
-    const ITEMS = [
-        { image: thumbnail1, itemTitle: "Ore no Koto ga Daikirai na Imouto ga Kowai" },
-        { image: thumbnail2, itemTitle: "Solo Levelling" },
-        { image: thumbnail3, itemTitle: "Some crazy hoe" },
-    ];
-    return (
-        <View
-            style={styles.container}>
-            <ScrollView style={{ width: '100%' }}>
-                <ImageBackground
-                    source={topImage}
-                    style={styles.topImage}>
-                    <View style={{ width: '100%' }}>
-                        <Header />
-                        <View style={{ width: '100%', alignItems: 'center' }}>
-                            <Text style={styles.Title}>
-                                Oshi no Ko
-                            </Text>
-                            <Button
-                                BtnLabel="Read Now"
-                                TextStyles={{ fontSize: 14, fontWeight: '600' }}
-                                btnStyles={{ width: 86 }}
-                            />
+class HomePage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.ITEMS = [
+            { image: thumbnail1, itemTitle: 'Ore no Koto ga Daikirai na Imouto ga Kowai' },
+            { image: thumbnail2, itemTitle: 'Solo Levelling' },
+            { image: thumbnail3, itemTitle: 'Some crazy hoe' },
+        ];
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <ScrollView style={{ width: '100%' }}>
+                    <ImageBackground source={topImage} style={styles.topImage}>
+                        <View style={{ width: '100%' }}>
+                            <Header />
+                            <View style={{ width: '100%', alignItems: 'center' }}>
+                                <Text style={styles.Title}>Oshi no Ko</Text>
+                                <Button
+                                    BtnLabel="Read Now"
+                                    TextStyles={{ fontSize: 14, fontWeight: '600' }}
+                                    btnStyles={{ width: 86 }}
+                                />
+                            </View>
+                            <View style={styles.arrowContainer}>
+                                <Image source={leftArrow} />
+                                <Text style={{ fontSize: 10.31, fontWeight: '400', color: white }}>7/10</Text>
+                                <Image source={rightArrow} />
+                            </View>
                         </View>
-                        <View style={styles.arrowContainer}>
-                            <Image
-                                source={leftArrow}
-                            />
-                            <Text
-                                style={{ fontSize: 10.31, fontWeight: '400', color: white }}>
-                                7/10
-                            </Text>
-                            <Image
-                                source={rightArrow}
-                            />
-                        </View>
-                    </View>
-                </ImageBackground >
-                <RowItems
-                    title="Popular"
-                    data={ITEMS}
-                />
-                <RowItems
-                    title="Latest Update"
-                    data={ITEMS}
-                />
-                <RowItems
-                    title="Recently Added"
-                    data={ITEMS}
-                />
-            </ScrollView>
-        </View>
-
-
-    )
+                    </ImageBackground>
+                    <RowItems title="Popular" data={this.ITEMS} />
+                    <RowItems title="Latest Update" data={this.ITEMS} />
+                    <RowItems title="Recently Added" data={this.ITEMS} />
+                </ScrollView>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -100,5 +74,7 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingHorizontal: 10,
         paddingBottom: 10,
-    }
-})
+    },
+});
+
+export default HomePage;
