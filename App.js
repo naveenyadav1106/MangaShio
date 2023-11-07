@@ -6,6 +6,7 @@ import SignIn from "./screens/SignIn";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import HomePage from "./screens/HomePage";
 
 
 export default class App extends Component {
@@ -29,6 +30,11 @@ export default class App extends Component {
             <this.Stack.Screen
               name="SignIn"
               component={SignIn}
+              options={{ headerShown: false }}
+            />
+            <this.Stack.Screen
+              name="Home Page"
+              component={HomePage}
               options={{ headerShown: false }}
             />
           </this.Stack.Navigator>

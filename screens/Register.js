@@ -1,30 +1,63 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { black, gray, linkColor, white } from "../colors";
-import TitleComponent from '../components/TitleComponent'
+import TitleComponent from '../components/TitleComponent';
 import Input from "../components/Input";
 import Button from "../components/Button";
 
 export default class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    };
+  }
+
+  handleRegisterPress = () => {
+    const { username, email, password, confirmPassword } = this.state;
+    console.log('Register button pressed', { username, email, password, confirmPassword });
+    this.props.navigation.navigate('Home Page');
+  };
+
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-        <TitleComponent />
-        <View style={styles.innerContainer}>
-          <Text style={styles.Title}>Register</Text>
-          <Input label="Username" />
-          <Input label="Email" />
-          <Input label="Password" />
-          <Input label="Confirm Password" />
-          <View style={styles.ButtonContainer}>
-            <Button BtnLabel="Register" />
-            <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
-              <Text style={styles.link}>Login page</Text>
-            </TouchableOpacity>
+      <>
+        <View style={styles.container}>
+          <TitleComponent />
+          <View style={styles.innerContainer}>
+            <Text style={styles.Title}>Register</Text>
+            <Input
+              label="Username"
+              onChangeText={(text) => this.setState({ username: text })}
+            />
+            <Input
+              label="Email"
+              onChangeText={(text) => this.setState({ email: text })}
+            />
+            <Input
+              label="Password"
+              onChangeText={(text) => this.setState({ password: text })}
+            />
+            <Input
+              label="Confirm Password"
+              onChangeText={(text) => this.setState({ confirmPassword: text })}
+            />
+            <View style={styles.ButtonContainer}>
+              <Button
+                BtnLabel="Register"
+                onPress={this.handleRegisterPress}
+              />
+              <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+                <Text style={styles.link}>Login page</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
+      </>
     );
   }
 }

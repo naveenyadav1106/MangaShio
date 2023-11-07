@@ -4,13 +4,19 @@ import { lightGray, white } from "../colors";
 
 export default class Input extends Component {
   render() {
-    const { label } = this.props;
+    const {
+      label,
+      onChangeText,
+      value,
+    } = this.props;
     return (
       <View style={styles.outerContainer}>
         <Text style={styles.title}>{label}</Text>
         <View style={styles.container}>
           <TextInput
             style={styles.TextInput}
+            onChangeText={onChangeText}
+            value={value}
           />
         </View>
       </View>

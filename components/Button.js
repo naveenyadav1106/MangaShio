@@ -5,9 +5,15 @@ import { blue, white } from "../colors";
 export default class Button extends Component {
     render() {
         const { BtnLabel } = this.props;
+        const { onPress } = this.props;
+        const { btnStyles } = this.props;
+        const { TextStyles } = this.props;
         return (
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.title}>{BtnLabel}</Text>
+            <TouchableOpacity
+                style={{ ...styles.button, ...btnStyles }}
+                onPress={onPress}
+            >
+                <Text style={{ ...styles.title, ...TextStyles }}>{BtnLabel}</Text>
             </TouchableOpacity>
         );
     }
@@ -15,9 +21,9 @@ export default class Button extends Component {
 
 const styles = StyleSheet.create({
     button: {
+        width: 362,
         flexDirection: "row",
         backgroundColor: blue,
-        width: 362,
         height: 34,
         alignItems: "center",
         justifyContent: "center",

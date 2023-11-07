@@ -6,34 +6,66 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 
 export default class SignIn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
+  handleLoginPress = () => {
+    const { username, password, } = this.state;
+    console.log('Login button pressed', { username, password });
+    this.props.navigation.navigate('Home Page');
+  };
   render() {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <TitleComponent />
         <View style={styles.innerContainer}>
-          <Text style={styles.Title}>Sign in</Text>
+          <Text style={styles.Title}>
+            Sign in
+          </Text>
           <Input
             label="Username/email"
+            onChangeText={(text) => this.setState({ username: text })}
           />
           <View style={styles.UserContainer}>
-            <Text style={styles.UserTitle}>New user?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-              <Text style={[styles.UserTitle, { color: linkColor }]}>Register here</Text>
+            <Text style={styles.UserTitle}>
+              New user?
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Register")}
+            >
+              <Text
+                style={[styles.UserTitle, { color: linkColor }]}
+              >
+                Register here
+              </Text>
             </TouchableOpacity>
           </View>
-          <Input label="Password" />
+          <Input
+            label="Password"
+            onChangeText={(text) => { this.setState({ password: text }) }}
+          />
 
           <View style={styles.PasswordContainer}>
-            <Text style={styles.UserTitle}>Remember me</Text>
+            <Text style={styles.UserTitle}>
+              Remember me
+            </Text>
             <TouchableOpacity>
-              <Text style={[styles.UserTitle, { color: linkColor }]}>Forgot password?</Text>
+              <Text
+                style={[styles.UserTitle, { color: linkColor }]}
+              >
+                Forgot password?
+              </Text>
             </TouchableOpacity>
           </View>
 
           <Button
             BtnLabel="Log in"
-            onPress={() => console.log('Log in button pressed')}
+            onPress={this.handleLoginPress}
           />
         </View>
       </View>
