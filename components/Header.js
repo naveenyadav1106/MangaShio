@@ -5,21 +5,31 @@ import { hamburger, logo, searchImg, account } from '../assets';
 
 class Header extends Component {
     render() {
+        const {
+            onHamburger,
+            onAccount,
+            onSearch,
+            onHome
+        } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.innerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={onHamburger}>
                         <Image source={hamburger} />
                     </TouchableOpacity>
-
-                    <Image source={logo} style={styles.img} />
-                    <Text style={styles.Title}>MangaShio</Text>
+                    <TouchableOpacity
+                        onPress={onHome}
+                        style={{ flexDirection: 'row', alignItems: 'center' }}
+                    >
+                        <Image source={logo} style={styles.img} />
+                        <Text style={styles.Title}>MangaShio</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.innerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={onSearch}>
                         <Image style={styles.searchImg} source={searchImg} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={onAccount}>
                         <Image source={account} />
                     </TouchableOpacity>
                 </View>

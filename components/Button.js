@@ -21,14 +21,14 @@ export default class Button extends Component {
 
 const styles = StyleSheet.create({
     button: {
-        width: 362,
+        width: '100%',
+        // width: 362,
         flexDirection: "row",
         backgroundColor: blue,
         height: 34,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 4,
-        width: '100%',
     },
     title: {
         color: white,

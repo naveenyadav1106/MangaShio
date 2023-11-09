@@ -8,13 +8,15 @@ export default class Input extends Component {
       label,
       onChangeText,
       value,
+      inputStyles,
+      containerStyles
     } = this.props;
     return (
       <View style={styles.outerContainer}>
         <Text style={styles.title}>{label}</Text>
-        <View style={styles.container}>
+        <View style={{ ...styles.container, ...containerStyles }}>
           <TextInput
-            style={styles.TextInput}
+            style={{ ...styles.TextInput, ...inputStyles }}
             onChangeText={onChangeText}
             value={value}
           />
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
   TextInput: {
     height: "100%",
     width: '100%',
+    // backgroundColor: blue
   },
   title: {
     fontSize: 13.13,

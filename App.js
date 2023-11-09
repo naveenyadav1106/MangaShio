@@ -1,19 +1,21 @@
+// import 'react-native-gesture-handler';
+
 import React, { Component } from "react";
+import { StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import Register from "./screens/Register";
-import SignIn from "./screens/SignIn";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import HomePage from "./screens/HomePage";
 
+import SignIn from "./screens/SignIn";
+import Register from "./screens/Register";
+import HomePage from "./screens/HomePage";
+import AccountDetails from "./screens/AccountDetails";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.Stack = createNativeStackNavigator();
-    this.Drawer = createDrawerNavigator();
   }
 
   render() {
@@ -35,6 +37,11 @@ export default class App extends Component {
             <this.Stack.Screen
               name="Home Page"
               component={HomePage}
+              options={{ headerShown: false }}
+            />
+            <this.Stack.Screen
+              name="Account Details"
+              component={AccountDetails}
               options={{ headerShown: false }}
             />
           </this.Stack.Navigator>

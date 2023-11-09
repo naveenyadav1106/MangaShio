@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   UserContainer: {
     flexDirection: "row",
     width: "100%",
-    marginBottom: 10,
+    marginBottom: 15,
     alignItems: "center",
   },
   PasswordContainer: {
