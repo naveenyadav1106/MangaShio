@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import { lightGray, white, blue } from "../colors";
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image } from "react-native";
+import { lightGray, white, blue, black } from "../colors";
+import { searchImg } from "../assets";
 
 export default class Input extends Component {
   render() {
@@ -9,17 +10,29 @@ export default class Input extends Component {
       onChangeText,
       value,
       inputStyles,
-      containerStyles
+      containerStyles,
+      placeholder,
+      search,
+      outerContainer,
+      password
     } = this.props;
     return (
-      <View style={styles.outerContainer}>
+      <View style={[styles.outerContainer, outerContainer]}>
         <Text style={styles.title}>{label}</Text>
         <View style={{ ...styles.container, ...containerStyles }}>
           <TextInput
             style={{ ...styles.TextInput, ...inputStyles }}
+            placeholder={placeholder}
+            placeholderTextColor={black}
             onChangeText={onChangeText}
             value={value}
+            secureTextEntry={password}
           />
+          {search && (
+            <TouchableOpacity>
+              <Image source={searchImg} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     );
@@ -43,9 +56,10 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   TextInput: {
+    flex: 0.8,
     height: "100%",
     width: '100%',
-    // backgroundColor: blue
+    // backgroundColor: blue,
   },
   title: {
     fontSize: 13.13,

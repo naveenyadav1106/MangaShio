@@ -20,3 +20,5 @@ export const close = require('./assets/close.png');
 export const searchItemImg = require('./assets/search-item.png');
 export const starImg = require('./assets/star.png');
 export const bookmark = require("./assets/bookmark.png");
+
+export const yellowCircle = require('./assets/YellowCircle.png')

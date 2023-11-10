@@ -48,6 +48,7 @@ export default class SignIn extends Component {
           <Input
             label="Password"
             onChangeText={(text) => { this.setState({ password: text }) }}
+            password={true}
           />
 
           <View style={styles.PasswordContainer}>

@@ -23,8 +23,9 @@ import {
 
 import { white, black } from '../colors';
 
-import Button from '../components/Button';
+import SearchModal from '../components/SearchModal';
 import Header from '../components/Header';
+import Button from '../components/Button';
 import RowItems from '../components/RowItems';
 
 class HomePage extends Component {
@@ -35,6 +36,15 @@ class HomePage extends Component {
             { image: thumbnail2, itemTitle: 'Solo Levelling' },
             { image: thumbnail3, itemTitle: 'Some crazy hoe' },
         ];
+        this.state = {
+            searchmodalVisible: false,
+        }
+    }
+
+    toggleSearchModal = () => {
+        this.setState((prevState) => ({
+            searchmodalVisible: !prevState.searchmodalVisible,
+        }));
     }
 
     render() {
@@ -43,11 +53,13 @@ class HomePage extends Component {
         const ratio = win.width / 428;
         return (
             <View style={[styles.container, { paddingTop: statusBarHeight }]} >
+                {this.state.searchmodalVisible && <SearchModal onClose={this.toggleSearchModal} />}
                 <ScrollView style={{ width: '100%' }}>
                     <ImageBackground source={topImage} style={[styles.topImage, { height: 272 * ratio }]}>
                         <Header
                             onHome={() => this.props.navigation.navigate('Home Page')}
                             onAccount={() => this.props.navigation.navigate('Account Details')}
+                            onSearch={this.toggleSearchModal}
                         />
                         <View style={{ width: '100%', alignItems: 'center' }}>
                             <Text style={styles.Title}>Oshi no Ko</Text>
@@ -74,8 +86,9 @@ class HomePage extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        // alignItems: 'center',
+        width: '100%',
         backgroundColor: black,
+        alignItems: 'center'
     },
     topImage: {
         width: '100%',
