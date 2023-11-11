@@ -12,7 +12,7 @@ import {
 }
     from 'react-native'
 
-import { coverPic, profilePic } from '../assets'
+import { coverPic, profilePic, Diamond, Gold, Silver } from '../assets'
 import { black, white, midGray } from '../colors'
 
 import SearchModal from '../components/SearchModal'
@@ -64,7 +64,7 @@ class AccountDetails extends Component {
                         </TouchableOpacity>
                     </ImageBackground>
                     <Text style={style.username}>Gangmember420</Text>
-                    <View style={{ marginTop: 95 }}>
+                    <View style={{ marginTop: 95, marginBottom: 30 }}>
                         <View style={style.sectionContainer}>
                             <Text style={style.sectionTitle}>Account Settings</Text>
                             <View style={style.inputContainer}>
@@ -102,7 +102,7 @@ class AccountDetails extends Component {
                         </View>
                         <View style={style.sectionContainer}>
                             <Text style={style.sectionTitle}>Subscriptions</Text>
-                            <View style={style.subscriptionContainer}>
+                            {/* <View style={style.subscriptionContainer}>
                                 <View style={style.TextContainer}>
                                     <View style={style.UpperText}>
                                         <Text style={style.BigText}>Free Plan</Text>
@@ -116,6 +116,41 @@ class AccountDetails extends Component {
                                         <Text style={style.smallText}>Ad free</Text>
                                     </View>
                                     <Text style={style.lowerText}>$16.99/m</Text>
+                                </View>
+                            </View> */}
+                            <View style={style.subscriptionContainer}>
+                                <View style={style.subItemContainer}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Image source={Diamond} />
+                                        <Text style={style.SubType}>Diamond</Text>
+                                    </View>
+                                    <Text style={style.subText}>Ad free for life</Text>
+                                    <Button BtnLabel="$25"
+                                        btnStyles={style.subButton}
+                                        TextStyles={style.subBtnText}
+                                    />
+                                </View>
+                                <View style={style.subItemContainer}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Image source={Gold} />
+                                        <Text style={style.SubType}>Gold</Text>
+                                    </View>
+                                    <Text style={style.subText}>Ad free for one year</Text>
+                                    <Button BtnLabel="$16"
+                                        btnStyles={style.subButton}
+                                        TextStyles={style.subBtnText}
+                                    />
+                                </View>
+                                <View style={style.subItemContainer}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Image source={Silver} />
+                                        <Text style={style.SubType}>Silver</Text>
+                                    </View>
+                                    <Text style={style.subText}>Ad free for one month</Text>
+                                    <Button BtnLabel="$3"
+                                        btnStyles={style.subButton}
+                                        TextStyles={style.subBtnText}
+                                    />
                                 </View>
                             </View>
                         </View>
@@ -151,7 +186,7 @@ const style = StyleSheet.create({
         alignSelf: 'center',
     },
     sectionContainer: {
-        marginBottom: 35,
+        marginBottom: 30,
         paddingHorizontal: 20,
     },
     sectionTitle: {
@@ -180,45 +215,79 @@ const style = StyleSheet.create({
         fontFamily: 'Roboto'
     },
     subscriptionContainer: {
+        // flexDirection: 'row',
+        // justifyContent: 'space-around',
         marginTop: 20,
+    },
+    subItemContainer: {
+        alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
-    TextContainer: {
-        alignItems: 'center',
-        width: 170,
-        height: 171,
-        borderRadius: 4,
-        borderColor: 'black',
-        borderWidth: 0.3,
         justifyContent: 'space-between',
-        paddingTop: 10,
-        paddingBottom: 15,
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+        marginVertical: 10,
+        borderRadius: 4,
+        elevation: 4,
+        marginHorizontal: 5,
     },
-    UpperText: {
-        alignItems: 'center',
-        width: '100%'
-    },
-    lowerText: {
+    SubType: {
         color: white,
-        fontWeight: '700',
-        fontSize: 25,
-        fontFamily: "Roboto",
-    },
-    BigText: {
-        fontWeight: '700',
         fontFamily: 'Roboto',
-        fontSize: 29,
-        color: white,
-        marginBottom: 10,
-    },
-    smallText: {
         fontWeight: '700',
         fontSize: 13,
+        marginLeft: 2,
+    },
+    subText: {
         color: white,
-        width: '50%',
-        textAlign: 'center'
+        fontFamily: 'Roboto',
+        fontWeight: '600',
+        fontSize: 8,
+    },
+    subButton: {
+        width: 52,
+        height: 20,
+        borderRadius: 2,
+    },
+    subBtnText: {
+        fontFamily: 'Roboto',
+        fontSize: 12,
+        fontWeight: '400',
     }
+    // TextContainer: {
+    //     alignItems: 'center',
+    //     width: 170,
+    //     height: 171,
+    //     borderRadius: 4,
+    //     borderColor: 'black',
+    //     borderWidth: 0.3,
+    //     justifyContent: 'space-between',
+    //     paddingTop: 10,
+    //     paddingBottom: 15,
+    // },
+    // UpperText: {
+    //     alignItems: 'center',
+    //     width: '100%'
+    // },
+    // lowerText: {
+    //     color: white,
+    //     fontWeight: '700',
+    //     fontSize: 25,
+    //     fontFamily: "Roboto",
+    // },
+    // BigText: {
+    //     fontWeight: '700',
+    //     fontFamily: 'Roboto',
+    //     fontSize: 29,
+    //     color: white,
+    //     marginBottom: 10,
+    // },
+    // smallText: {
+    //     fontWeight: '700',
+    //     fontSize: 13,
+    //     color: white,
+    //     width: '50%',
+    //     textAlign: 'center'
+    // }
 })
 
 export default AccountDetails;

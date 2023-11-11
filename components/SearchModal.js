@@ -25,19 +25,21 @@ class SearchModal extends Component {
                     source={image}
                 />
                 <View>
-                    <Text style={{ fontWeight: '500', fontSize: 24, color: white }}>{title}</Text>
+                    <Text style={{ fontWeight: '500', fontSize: 24, color: white, marginBottom: 3 }}>{title}</Text>
                     <View style={styles.infoContainer}>
                         <View style={styles.ratingContainer}>
                             <Image
+                                style={{ marginRight: 1 }}
                                 source={starImg}
                             />
-                            <Text style={{ fontWeight: '500', fontSize: 10, color: white }}>{rating}</Text>
+                            <Text style={{ fontWeight: '500', fontSize: 10, color: white, marginRight: 10 }}>{rating}</Text>
                         </View>
                         <View style={styles.ratingContainer}>
                             <Image
+                                style={{ marginRight: 1 }}
                                 source={bookmark}
                             />
-                            <Text style={{ fontWeight: '500', fontSize: 10, color: white }}>{bookmarks}</Text>
+                            <Text style={{ fontWeight: '500', fontSize: 10, color: white, marginRight: 10 }}>{bookmarks}</Text>
                         </View>
                     </View>
                     <View style={styles.statusContainer}>
@@ -118,11 +120,12 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 10,
     },
     ratingContainer: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     statusContainer: {
         backgroundColor: lightGray,
