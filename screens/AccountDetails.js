@@ -52,6 +52,7 @@ class AccountDetails extends Component {
                             onHome={() => navigation.navigate('Home Page')}
                             onAccount={() => navigation.navigate('Account Details')}
                             onSearch={this.toggleSearchModal}
+                            onHamburger={() => navigation.navigate('Temporary Drawer')}
                         />
                         <TouchableOpacity
                             style={[style.profilePicContainer, { top: 100 * ratio }]}

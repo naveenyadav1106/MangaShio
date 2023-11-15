@@ -57,9 +57,9 @@ class HomePage extends Component {
                 <ScrollView style={{ width: '100%' }}>
                     <ImageBackground source={topImage} style={[styles.topImage, { height: 272 * ratio }]}>
                         <Header
-                            onHome={() => this.props.navigation.navigate('Home Page')}
-                            onAccount={() => this.props.navigation.navigate('Account Details')}
                             onSearch={this.toggleSearchModal}
+                            onAccount={() => { this.props.navigation.navigate('Account Details') }}
+                            onHamburger={() => { this.props.navigation.navigate('Temporary Drawer') }}
                         />
                         <View style={{ width: '100%', alignItems: 'center' }}>
                             <Text style={styles.Title}>Oshi no Ko</Text>

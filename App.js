@@ -11,6 +11,9 @@ import SignIn from "./screens/SignIn";
 import Register from "./screens/Register";
 import HomePage from "./screens/HomePage";
 import AccountDetails from "./screens/AccountDetails";
+import TemporaryDrawer from "./screens/TemporaryDrawer";
+import Library from './screens/Library'
+import Browse from './screens/Browse'
 
 export default class App extends Component {
   constructor(props) {
@@ -42,6 +45,21 @@ export default class App extends Component {
             <this.Stack.Screen
               name="Account Details"
               component={AccountDetails}
+              options={{ headerShown: false }}
+            />
+            <this.Stack.Screen
+              name="Temporary Drawer"
+              component={TemporaryDrawer}
+              options={{ headerShown: false }}
+            />
+            <this.Stack.Screen
+              name="Browse"
+              component={Browse}
+              options={{ headerShown: false }}
+            />
+            <this.Stack.Screen
+              name="Library"
+              component={Library}
               options={{ headerShown: false }}
             />
           </this.Stack.Navigator>
