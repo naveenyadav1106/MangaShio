@@ -1,11 +1,15 @@
-import { Text, StyleSheet, View, Button, TouchableOpacity, FlatList, Image } from 'react-native'
 import React, { Component } from 'react'
-import Header from '../components/Header'
-import { TABS_DATA } from '../Library_data/Library_data'
-import { black, white, lightGray, purple, gray, ongoingColor } from '../colors'
+
+import { Text, StyleSheet, View, Button, TouchableOpacity, FlatList, Image } from 'react-native'
 import { StatusBar } from 'react-native'
+
+import { TABS_DATA } from '../Library_data/Library_data'
+
+import { starImg, bookmark } from '../assets'
+import { black, white, lightGray, purple, gray, ongoingColor } from '../colors'
+
+import Header from '../components/Header'
 import SearchModal from '../components/SearchModal'
-import { starImg, bookmark, yellowCircle } from '../assets'
 
 export default class Library extends Component {
     constructor(props) {
