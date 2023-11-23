@@ -12,6 +12,7 @@ class SearchModal extends Component {
         super(props);
         this.state = {
             searchData: SEARCH_ITEMS,
+            searchQuery: " ",
         };
     }
 
@@ -54,6 +55,16 @@ class SearchModal extends Component {
         )
     }
 
+    handleSearchQuery = (text) => {
+        const filterData = SEARCH_ITEMS.filter((item) =>
+            item.title.toLowerCase().includes(text.toLowerCase())
+        );
+        this.setState({
+            searchQuery: text,
+            searchData: filterData,
+        })
+    }
+
     render() {
         const win = Dimensions.get("window");
         const statusBarHeight = StatusBar.currentHeight || 0;
@@ -68,6 +79,8 @@ class SearchModal extends Component {
                             search={true}
                             inputStyles={styles.inputStyles}
                             outerContainer={{ flex: 0.98 }}
+                            value={this.state.searchQuery}
+                            onChangeText={(text) => this.handleSearchQuery(text)}
                         />
                     </View>
                     <TouchableOpacity
@@ -78,11 +91,16 @@ class SearchModal extends Component {
                         />
                     </TouchableOpacity>
                 </View>
-                <FlatList
-                    style={{ width: '100%', marginTop: 8 }}
-                    data={this.state.searchData}
-                    renderItem={this.SearchRenderer}
-                />
+                {this.state.searchData.length === 0 ? (
+                    <Text style={styles.Noresult}>No results found</Text>
+                ) : (
+                    <FlatList
+                        style={{ width: '100%', marginTop: 8 }}
+                        data={this.state.searchData}
+                        renderItem={this.SearchRenderer}
+                    />
+                )
+                }
             </View>
         )
     }
@@ -140,6 +158,9 @@ const styles = StyleSheet.create({
         fontSize: 10,
         color: white,
         fontFamily: 'Roboto'
+    },
+    Noresult: {
+        color: white,
     }
 })
 
