@@ -14,6 +14,7 @@ import AccountDetails from "./screens/AccountDetails";
 import TemporaryDrawer from "./screens/TemporaryDrawer";
 import Library from './screens/Library'
 import Browse from './screens/Browse'
+import MangaDetails from "./screens/MangaDetails";
 
 export default class App extends Component {
   constructor(props) {
@@ -60,6 +61,11 @@ export default class App extends Component {
             <this.Stack.Screen
               name="Library"
               component={Library}
+              options={{ headerShown: false }}
+            />
+            <this.Stack.Screen
+              name="Manga Details"
+              component={MangaDetails}
               options={{ headerShown: false }}
             />
           </this.Stack.Navigator>
