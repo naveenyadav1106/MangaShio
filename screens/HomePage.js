@@ -47,13 +47,22 @@ class HomePage extends Component {
         }));
     }
 
+    navigateToMangaDetails = () => {
+        this.props.navigation.navigate('Manga Details')
+    }
+
     render() {
         const statusBarHeight = RNStatusBar.currentHeight || 0;
         const win = Dimensions.get("window");
         const ratio = win.width / 428;
         return (
             <View style={[styles.container, { paddingTop: statusBarHeight }]} >
-                {this.state.searchmodalVisible && <SearchModal onClose={this.toggleSearchModal} />}
+                {this.state.searchmodalVisible
+                    &&
+                    <SearchModal
+                        navigateToMangaDetails={this.navigateToMangaDetails}
+                        onClose={this.toggleSearchModal}
+                    />}
                 <ScrollView style={{ width: '100%' }}>
                     <ImageBackground source={topImage} style={[styles.topImage, { height: 272 * ratio }]}>
                         <Header
@@ -75,9 +84,15 @@ class HomePage extends Component {
                             <Image source={rightArrow} />
                         </View>
                     </ImageBackground>
-                    <RowItems title="Popular" data={this.ITEMS} />
-                    <RowItems title="Latest Update" data={this.ITEMS} />
-                    <RowItems title="Recently Added" data={this.ITEMS} />
+                    <RowItems title="Popular" data={this.ITEMS}
+                        navigateToMangaDetails={this.navigateToMangaDetails}
+                    />
+                    <RowItems title="Latest Update" data={this.ITEMS}
+                        navigateToMangaDetails={this.navigateToMangaDetails}
+                    />
+                    <RowItems title="Recently Added" data={this.ITEMS}
+                        navigateToMangaDetails={this.navigateToMangaDetails}
+                    />
                 </ScrollView>
             </View>
         );

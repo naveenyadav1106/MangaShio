@@ -1,17 +1,56 @@
-import { Text, StyleSheet, View, ImageBackground, ScrollView, StatusBar, Dimensions, Image } from 'react-native'
 import React, { Component } from 'react'
+import {
+    Text,
+    StyleSheet,
+    View,
+    ImageBackground,
+    StatusBar,
+    Dimensions,
+    Image,
+    FlatList,
+    TouchableOpacity,
+} from 'react-native'
+
+import { black, white } from '../colors'
+import { bookmark, starImg, thumbnail3, topImage } from '../assets'
+
+import { Details } from '../Manga Details/MangaDetailsData'
+
 import Header from '../components/Header'
 import SearchModal from '../components/SearchModal'
-import { black, lightGray, white } from '../colors'
-import { bookmark, starImg, thumbnail3, topImage } from '../assets'
 import Button from '../components/Button'
 
 export default class MangaDetails extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchmodalVisible: false
+            searchmodalVisible: false,
+            data: Details,
         }
+    }
+
+
+
+    renderItems = ({ item }) => {
+        return (
+            <TouchableOpacity
+                // android_ripple={{ color: black }}
+                style={styles.itemContainer}
+                key={item.title}
+            >
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Image
+                        source={item.image}
+                    />
+                    <Text style={styles.number}>{item.number}</Text>
+                    <Text style={styles.title}>{item.title}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={styles.days}>{item.days}</Text>
+                    <Text style={styles.description}>{item.description}</Text>
+                </View>
+            </TouchableOpacity>
+        )
     }
 
     toggleSearchModal = () => {
@@ -27,8 +66,8 @@ export default class MangaDetails extends Component {
         return (
             <>
                 {this.state.searchmodalVisible && <SearchModal onClose={this.toggleSearchModal} />}
-                <ScrollView
-                    // contentContainerStyle={{ alignItems: 'center' }}
+                <View
+                    contentContainerStyle={{ alignItems: 'center' }}
                     style={[styles.container, { paddingTop: statusBarHeight }]}>
                     <ImageBackground
                         style={{ width: '100%', height: 272 * ratio }}
@@ -43,7 +82,6 @@ export default class MangaDetails extends Component {
                         <View style={styles.topContainer}>
                             <Image
                                 source={thumbnail3}
-                                style={styles.image}
                             />
                             <View style={styles.infoContainer}>
                                 <View style={{ flexDirection: 'row' }}>
@@ -133,7 +171,20 @@ export default class MangaDetails extends Component {
                             </View>
                         </View>
                     </ImageBackground>
-                </ScrollView>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', alignSelf: 'center' }}>
+                        <View style={styles.btnContainer}>
+                            <Button
+                                BtnLabel="see more"
+                                btnStyles={styles.seemore}
+                                TextStyles={styles.seemoretext}
+                            />
+                        </View>
+                    </View>
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={this.renderItems}
+                    />
+                </View>
             </>
         )
     }
@@ -185,5 +236,59 @@ const styles = StyleSheet.create({
         fontSize: 10,
         fontWeight: '700',
         fontFamily: 'Roboto'
+    },
+    itemContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 1,
+        paddingVertical: 8,
+        paddingHorizontal: 10,
+        elevation: 1,
+        borderRadius: 2,
+    },
+    number: {
+        color: white,
+        fontWeight: '600',
+        fontFamily: 'Roboto',
+        fontSize: 12.5,
+        marginHorizontal: 5,
+    },
+    title: {
+        marginLeft: 5,
+        alignSelf: 'center',
+        color: white,
+        fontFamily: 'Roboto',
+        fontWeight: '500',
+        fontSize: 9.5,
+    },
+    days: {
+        color: white,
+        fontFamily: 'Roboto',
+        fontSize: 7,
+        marginRight: 10
+    },
+    description: {
+        color: white,
+        fontFamily: 'Roboto',
+        fontWeight: '400',
+        fontSize: 9.5,
+        marginRight: 5,
+    },
+    btnContainer: {
+        position: 'absolute',
+        // top: 0.25
+    },
+    seemore: {
+        width: 54,
+        height: 10,
+        backgroundColor: 'rgba(0, 0, 255, 0.5)',
+        borderBottomRightRadius: 4,
+        borderBottomLeftRadius: 4,
+    },
+    seemoretext: {
+        fontFamily: 'Roboto',
+        fontSize: 7,
+        // fontWeight: '500',
     }
 })

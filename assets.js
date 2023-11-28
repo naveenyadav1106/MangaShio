@@ -25,3 +25,6 @@ export const yellowCircle = require('./assets/YellowCircle.png')
 export const Diamond = require('./assets/Diamond.png')
 export const Gold = require('./assets/Gold.png')
 export const Silver = require('./assets/Silver.png')
+
+export const flag = require('./assets/GB.png')
+export const tube = require('./assets/VN.png')

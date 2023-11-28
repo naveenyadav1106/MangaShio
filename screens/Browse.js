@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Text, StyleSheet, View, FlatList, Image } from 'react-native'
+import { Text, StyleSheet, View, FlatList, Image, TouchableOpacity } from 'react-native'
 import { StatusBar } from 'react-native'
 
 import { ITEMS } from '../BrowseData/Browse_data'
@@ -30,7 +30,8 @@ export default class Browse extends Component {
 
     renderItem = ({ item }) => {
         return (
-            <View
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Manga Details')}
                 style={styles.renderContainer}
                 key={item.title}
             >
@@ -111,7 +112,7 @@ export default class Browse extends Component {
                         {item.description}
                     </Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 

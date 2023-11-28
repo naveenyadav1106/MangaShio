@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
 import { white } from '../colors';
 import { nextArrow } from '../assets';
 
 class RowItems extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    navigateTo = () => {
+        this.props.navigateToMangaDetails()
+    }
+
     renderItem = ({ item }) => {
         const { image, itemTitle } = item;
         return (
-            <View style={styles.imageContainer}>
+            <TouchableOpacity
+                onPress={this.navigateTo}
+                style={styles.imageContainer}
+            >
                 <Image style={styles.Img} source={image} />
                 <Text style={styles.imageText}>{itemTitle}</Text>
-            </View>
+            </TouchableOpacity>
         );
     };
 
@@ -22,7 +33,9 @@ class RowItems extends Component {
                     <Text style={styles.Title}>{title}</Text>
                     <Image source={nextArrow} />
                 </View>
-                <FlatList data={data} renderItem={this.renderItem} horizontal />
+                <FlatList
+
+                    data={data} renderItem={this.renderItem} horizontal />
             </View>
         );
     }

@@ -29,7 +29,8 @@ export default class Library extends Component {
 
     renderItem = ({ item }) => {
         return (
-            <View
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Manga Details')}
                 style={styles.renderContainer}
                 key={item.title}
             >
@@ -110,7 +111,7 @@ export default class Library extends Component {
                         {item.description}
                     </Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 

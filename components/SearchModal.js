@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image, Dimensions, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image, Dimensions, StatusBar, Pressable } from 'react-native'
 
 import { close, starImg, bookmark, yellowCircle } from '../assets'
 import { white, lightGray } from '../colors'
@@ -16,11 +16,18 @@ class SearchModal extends Component {
         };
     }
 
+    navigateTo = () => {
+        this.props.navigateToMangaDetails()
+    }
+
     SearchRenderer = ({ item }) => {
         const { image, title, bookmarks, rating, status } = item;
 
         return (
-            <View style={styles.listContainer}>
+            <Pressable
+                onPress={this.navigateTo}
+                android_ripple={{ color: '#ccc' }}
+                style={styles.listContainer}>
                 <Image
                     style={{ marginRight: 10 }}
                     source={image}
@@ -51,7 +58,7 @@ class SearchModal extends Component {
                         <Text style={styles.statusText}>{status}</Text>
                     </View>
                 </View>
-            </View>
+            </Pressable>
         )
     }
 
