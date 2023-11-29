@@ -24,6 +24,7 @@ export default class MangaDetails extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            descriptionmodal: false,
             searchmodalVisible: false,
             data: Details,
         }
@@ -59,6 +60,12 @@ export default class MangaDetails extends Component {
         }));
     }
 
+    toggledescriptionModal = () => {
+        this.setState((prevState) => ({
+            descriptionmodal: !prevState.descriptionmodal,
+        }))
+    }
+
     render() {
         const statusBarHeight = StatusBar.currentHeight || 0;
         const window = Dimensions.get('window');
@@ -70,7 +77,7 @@ export default class MangaDetails extends Component {
                     contentContainerStyle={{ alignItems: 'center' }}
                     style={[styles.container, { paddingTop: statusBarHeight }]}>
                     <ImageBackground
-                        style={{ width: '100%', height: 272 * ratio }}
+                        style={{ width: '100%', height: !this.state.descriptionmodal ? 272 * ratio : 383 * ratio }}
                         source={topImage}
                     >
                         <Header
@@ -79,7 +86,7 @@ export default class MangaDetails extends Component {
                             onHamburger={() => this.props.navigation.navigate('Temporary Drawer')}
                             onSearch={this.toggleSearchModal}
                         />
-                        <View style={styles.topContainer}>
+                        <View style={[styles.topContainer, { marginTop: !this.state.descriptionmodal ? 0 : 20 }]}>
                             <Image
                                 source={thumbnail3}
                             />
@@ -170,10 +177,17 @@ export default class MangaDetails extends Component {
                                 </View>
                             </View>
                         </View>
+                        {
+                            this.state.descriptionmodal &&
+                            <View style={styles.descriptionContainer}>
+                                <Text style={styles.descriptionTitle}>Shuichi, a high school student, ended up marrying his childhood friend whom he thought was a boy. At their reunion after 10 years, his childhood friend Yuika had transformed into a beautiful girl, which initially made Shuichi quite nervous. However, as time passed, he gradually grew accustomed to the sense of closeness as best friends and thus, their love story as an ideal couple with a charming touch of innocence begins!</Text>
+                            </View>
+                        }
                     </ImageBackground>
                     <View style={{ alignItems: 'center', justifyContent: 'center', alignSelf: 'center' }}>
                         <View style={styles.btnContainer}>
                             <Button
+                                onPress={this.toggledescriptionModal}
                                 BtnLabel="see more"
                                 btnStyles={styles.seemore}
                                 TextStyles={styles.seemoretext}
@@ -196,8 +210,8 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     topContainer: {
-        marginLeft: 20,
         flex: 1,
+        marginLeft: 20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -290,5 +304,17 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         fontSize: 7,
         // fontWeight: '500',
-    }
+    },
+    descriptionContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+    },
+    descriptionTitle: {
+        color: white,
+        fontFamily: 'Roboto',
+        fontWeight: '400',
+        fontSize: 13
+    },
 })
