@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
 import { black, gray, linkColor, white } from "../colors";
-import TitleComponent from '../components/TitleComponent'
+import TitleComponent from '../components/TitleComponent';
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { signInWithEmailAndPassword, Firebase_Auth } from '../FirebaseConfig';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -13,11 +14,21 @@ export default class SignIn extends Component {
       password: "",
     };
   }
-  handleLoginPress = () => {
-    const { username, password, } = this.state;
-    console.log('Login button pressed', { username, password });
-    this.props.navigation.navigate('Home Page');
+
+  handleLoginPress = async () => {
+    const { username, password } = this.state;
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(Firebase_Auth, username, password);
+      console.log('User signed in successfully!', userCredential.user.uid);
+
+      this.props.navigation.navigate('Home Page');
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+      Alert.alert('Error', 'Invalid username or password. Please try again.');
+    }
   };
+
   render() {
     const { navigation } = this.props;
     return (

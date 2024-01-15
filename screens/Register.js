@@ -4,6 +4,10 @@ import { black, gray, linkColor, white } from "../colors";
 import TitleComponent from '../components/TitleComponent';
 import Input from "../components/Input";
 import Button from "../components/Button";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { Firebase_Auth } from '../FirebaseConfig'
 
 export default class Register extends Component {
   constructor(props) {
@@ -16,10 +20,27 @@ export default class Register extends Component {
     };
   }
 
-  handleRegisterPress = () => {
+  handleRegisterPress = async () => {
     const { username, email, password, confirmPassword } = this.state;
-    console.log('Register button pressed', { username, email, password, confirmPassword });
-    this.props.navigation.navigate('Home Page');
+
+    try {
+      // Validate passwords
+      if (password !== confirmPassword) {
+        console.error('Passwords do not match');
+        return;
+      }
+
+      // Use Firebase authentication API to create a new user
+      const userCredential = await createUserWithEmailAndPassword(Firebase_Auth, email, password);
+      console.log('User registered successfully!', userCredential.user.uid);
+
+      await AsyncStorage.setItem('username', username);
+
+      // Navigate to the Home Page or any other screen upon successful registration
+      this.props.navigation.navigate('Home Page');
+    } catch (error) {
+      console.error('Error registering user:', error.message);
+    }
   };
 
   render() {
